@@ -45,6 +45,27 @@
   - When eating an edible, it should be pushed into a "stomach" property which is an array.
   - Give persons the ability to poop.
   - When pooping, the stomach should empty.
+  */
+
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
+}
+
+Person.prototype.greet = function() {
+  return `My name is ${this.name} and I am ${this.age} years old.`;
+};
+
+Person.prototype.eatEdibles = function(edible) {
+  this.stomach.push(edible);
+};
+
+Person.prototype.poop = function() {
+  this.stomach = [];
+};
+
+/*
 
   TASK 2
 
@@ -56,12 +77,43 @@
   - Give cars the ability to be repaired.
   - A repaired car can be driven again.
 
+  */
+
+function Car(model, make) {
+  this.model = model;
+  this.make = make;
+  this.odometer = 0;
+  this.hasCrashed = false;
+}
+
+Car.prototype.drive = function(distance) {
+  if (!this.hasCrashed) {
+    this.odometer = this.odometer + distance;
+  } else {
+    return `I crashed at ${this.odometer} miles!`;
+  }
+};
+
+Car.prototype.crash = function() {
+  this.hasCrashed = true;
+};
+
+Car.prototype.repair = function() {
+  this.hasCrashed = false;
+};
+
+/*
+
   TASK 3
 
   - Build a Baby constructor that subclasses the Person built earlier.
   - Babies of course inherit the ability to greet, which can be strange.
   - Babies should have the ability to play, which persons don't.
   - By playing, a string is returned with some text of your choosing.
+
+  */
+
+/*
 
   TASK 4
 
@@ -108,10 +160,10 @@
 */
 
 /*
-  * Inheritance chain: GameObject -> CharacterStats -> Humanoid
-  * Instances of Humanoid should have all of the same properties as CharacterStats and GameObject.
-  * Instances of CharacterStats should have all of the same properties as GameObject.
-*/
+ * Inheritance chain: GameObject -> CharacterStats -> Humanoid
+ * Instances of Humanoid should have all of the same properties as CharacterStats and GameObject.
+ * Instances of CharacterStats should have all of the same properties as GameObject.
+ */
 
 // Test you work by un-commenting these 3 objects and the list of console logs below:
 
