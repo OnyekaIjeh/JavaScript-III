@@ -133,6 +133,51 @@ Baby.prototype.play = function() {
 
 */
 
+function User(user) {
+  this.name = user.name;
+  this.age = user.age;
+  this.active = true;
+}
+
+User.prototype.activate = function() {
+  this.active = true;
+};
+
+User.prototype.deactivate = function() {
+  this.active = false;
+};
+
+function Admin(admin) {
+  User.call(this, admin);
+  this.isAdmin = true;
+}
+
+Admin.prototype = Object.create(User.prototype);
+
+Admin.prototype.deactivateUser = function(user) {
+  user.deactivate();
+};
+
+Admin.prototype.activateUser = function(user) {
+  user.activate();
+};
+
+Admin.prototype.createUser = function(user) {
+  let user = new User(user);
+};
+
+function Vendor(vendor) {
+  User.call(this, vendor);
+  this.isVendor = true;
+  this.products = [];
+}
+
+Vendor.prototype = Object.create(User.prototype);
+
+Vendor.prototype.storeProducts = function(product) {
+  this.product.push(product);
+};
+
 /*
 
   STRETCH TASK
